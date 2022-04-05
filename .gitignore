@@ -1,7 +1,7 @@
 *.pt
 .DS_Store
-*.png
-*.jpg
+train
+test
 .ipynb_checkpoints
 *.ipynb
 __pycache__
