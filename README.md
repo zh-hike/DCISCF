@@ -3,6 +3,7 @@
 > **date** : 2022.4.5
 
 本次实验主要是使用pytorch复现[DCISCF](https://arxiv.org/abs/2007.02393) 论文。
+![模型](./Img/model.png)
 
 ## 准备
 ### 数据集
