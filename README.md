@@ -1,5 +1,5 @@
 # Deep Convolutional Neural Network for Identifying Seam-Carving Forgery
-> **author**: Hai Zhou \
+> **author**: zhhike \
 > **date** : 2022.4.5
 
 本次实验主要是使用pytorch复现[DCISCF](https://arxiv.org/abs/2007.02393) 论文。
