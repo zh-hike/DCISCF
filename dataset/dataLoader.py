@@ -8,6 +8,11 @@ from dataset.util import TrainTransform, EvalTransform
 
 
 class DL:
+    """
+    加载数据集，训练集和验证集
+    同时设置dataloader
+
+    """
     def __init__(self, args):
         train_transform = TrainTransform()
         eval_transform = EvalTransform(args.time)
