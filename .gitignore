@@ -4,4 +4,6 @@ train
 test
 .ipynb_checkpoints
 *.ipynb
+*.zip
+eval
 __pycache__

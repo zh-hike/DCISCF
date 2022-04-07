@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from network import DCISCF
 import torch.nn.functional as F
-
+import pandas as pd
 
 class Trainer:
     def __init__(self, args):
@@ -33,7 +33,10 @@ class Trainer:
         data = DL(self.args)
 
         self.traindl = data.traindl
+        self.evaldl = data.evaldl
         self.testdl = data.testdl
+        self.testimg = data.test_name
+        self.classesname = data.test_classes
 
     def save_model(self):
         """
@@ -94,6 +97,29 @@ class Trainer:
             ))
         self.save_model()
 
+    def test(self):
+        self.load_model()
+        self.net.eval()
+        preds = []
+        names = []
+        index = 0
+        for batch, (inputs, targets) in enumerate(self.testdl, 1):
+            for x in inputs:
+
+                x = x.to(self.device)
+                output = self.net(x)
+                output = F.softmax(output, dim=1).argmax(dim=1).squeeze()
+                for i in output:
+
+                    preds.append(self.classesname[i])
+                    names.append(self.testimg[index][0])
+                    index += 1
+
+        df = pd.DataFrame({'img':names, 'pred':preds})
+        df.to_excel('./results/test.xlsx', index=False)
+
+
+
     def eval(self):
         """
         验证
@@ -103,7 +129,7 @@ class Trainer:
         self.net.eval()
         preds = []
         reals = []
-        for batch, (inputs, targets) in enumerate(self.testdl, 1):
+        for batch, (inputs, targets) in enumerate(self.evaldl, 1):
             n = targets.shape[0]
             pred = 0
             targets = targets.to(self.device)

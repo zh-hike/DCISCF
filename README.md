@@ -34,3 +34,7 @@ pip3 install torch torchvision torchaudio --extra-index-url https://download.pyt
 * 验证命令
 
 `python run.py --eval`
+
+* 测试命令
+
+`python run.py --test`

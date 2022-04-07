@@ -17,6 +17,13 @@ class DL:
         train_transform = TrainTransform()
         eval_transform = EvalTransform(args.time)
         train_data = ImageFolder(args.data_path + 'train/', transform=train_transform)
+        eval_data = ImageFolder(args.data_path + 'eval/', transform=eval_transform)
+
         test_data = ImageFolder(args.data_path + 'test/', transform=eval_transform)
+
+
         self.traindl = DataLoader(train_data, batch_size=args.batch_size, shuffle=True)
+        self.evaldl = DataLoader(eval_data, batch_size=20)
         self.testdl = DataLoader(test_data, batch_size=20)
+        self.test_name = test_data.imgs
+        self.test_classes = train_data.classes
